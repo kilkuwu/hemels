@@ -6,8 +6,8 @@ import {
   faPlus,
   faPaperPlane,
 } from "@fortawesome/free-solid-svg-icons";
-import CKBalloonBlockWithLoading from "../../../components/RTEs/CKBalloonBlockWithLoading";
-import CKClassicWithLoading from "../../../components/RTEs/CKClassicWithLoading";
+import CKBalloonWithLoading from "../../../components/RTEs/CKBalloonWithLoading";
+import CKInlineWithLoading from "../../../components/RTEs/CKInlineWithLoading";
 import { useRouter } from "next/router";
 
 export default function MultipleChoice() {
@@ -34,7 +34,7 @@ export default function MultipleChoice() {
         if (Array.isArray(choices)) {
           checkChoice = choices.map((choice) => JSON.parse(choice));
         } else {
-          checkChoice = JSON.parse(choices.replace(/&quot;/ig,'"'));
+          checkChoice = JSON.parse(choices.replace(/&quot;/gi, '"'));
         }
 
         if (!Array.isArray(checkChoice)) {
@@ -52,8 +52,8 @@ export default function MultipleChoice() {
           });
           setChoices(newChoice);
         }
-      } catch(SyntaxError) {
-        flag = false
+      } catch (SyntaxError) {
+        flag = false;
       }
     } else {
       flag = false;
@@ -104,7 +104,7 @@ export default function MultipleChoice() {
         <div>
           <div className={styles.head}>Question</div>
           <div className={styles.headEditor}>
-            <CKClassicWithLoading
+            <CKInlineWithLoading
               data={question}
               onChange={(_, editor) => {
                 setQuestion(editor.getData());
@@ -139,7 +139,7 @@ export default function MultipleChoice() {
                     {String.fromCharCode(97 + index).toUpperCase()}
                   </div>
                   <div className={styles.choiceEditor}>
-                    <CKBalloonBlockWithLoading
+                    <CKBalloonWithLoading
                       data={value.content}
                       onChange={(_, editor) =>
                         setChoices(
@@ -183,7 +183,7 @@ export default function MultipleChoice() {
         <div>
           <div className={styles.head}>Note</div>
           <div className={styles.headEditor}>
-            <CKClassicWithLoading
+            <CKInlineWithLoading
               data={note}
               onChange={(_, editor) => {
                 setNote(editor.getData());

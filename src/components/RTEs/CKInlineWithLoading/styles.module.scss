@@ -1,6 +1,6 @@
 .editorWrapper {
   position: relative;
-  min-height: calc(var(--line-height) * 1em + 2.6em + 5px + 1.84615 * 13px);
+  min-height: calc(var(--line-height) * 1em + 1.8em + 2px);
 
   .loading {
     position: absolute;
@@ -13,7 +13,6 @@
     justify-content: center;
     background-color: #fff;
     cursor: default;
-    z-index: 9999;
   }
 
   .fadeOut {

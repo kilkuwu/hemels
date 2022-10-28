@@ -11,12 +11,12 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #eee;
+    background-color: #fff;
     cursor: default;
   }
 
   .fadeOut {
-    animation: fadeOut 1s forwards;
+    animation: fadeOut 0.5s forwards;
   }
 
   @keyframes fadeOut {

@@ -2,11 +2,11 @@ import { CKPropsWithoutEditor } from "@ckeditor/ckeditor5-react";
 import dynamic from "next/dynamic";
 import { MutableRefObject, useRef, useState } from "react";
 import styles from "./styles.module.scss";
-const CKBalloonBlock = dynamic(() => import("../CKBalloonBlock"), {
+const CKInline = dynamic(() => import("../CKInline"), {
   ssr: false,
 });
 
-function CKBalloonBlockWithLoading(props: CKPropsWithoutEditor) {
+function CKBalloonWithLoading(props: CKPropsWithoutEditor) {
   const [loaded, setLoaded] = useState(false);
   const loadingRef: MutableRefObject<HTMLDivElement> = useRef();
 
@@ -19,7 +19,7 @@ function CKBalloonBlockWithLoading(props: CKPropsWithoutEditor) {
           Loading...
         </div>
       )}
-      <CKBalloonBlock
+      <CKInline
         {...props}
         onReady={(editor) => {
           if (loadingRef.current) {
@@ -35,4 +35,4 @@ function CKBalloonBlockWithLoading(props: CKPropsWithoutEditor) {
   );
 }
 
-export default CKBalloonBlockWithLoading;
+export default CKBalloonWithLoading;
