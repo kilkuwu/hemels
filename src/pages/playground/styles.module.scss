@@ -1,0 +1,21 @@
+.playgroundWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+
+  .circleProgress {
+    height: 100px;
+    width: 100px;
+    border-radius: 9999px;
+    background:
+    radial-gradient(closest-side, white 80%, transparent 0 99.9%, white 0),
+    conic-gradient(black calc(25 * 1%), blue 0)
+  }
+
+  button {
+    max-width: 200px;
+    margin: 10px;
+  }
+}
