@@ -1,0 +1,147 @@
+@mixin alignCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin alignColumn {
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin makeCircle {
+  border-radius: 50%;
+}
+
+.layoutContainer {
+  --transition-speed: 0.2s;
+  --button-width: 3em;
+  display: flex;
+
+  .mainSection {
+    flex: 1
+  }
+
+  .navSection {
+    min-height: 100vh;
+    background-color: var(--theme-color-1);
+    @include alignColumn;
+
+    >.routesNav {
+      @include alignColumn;
+      margin-top: calc(var(--button-width)  / 3 * 2);
+
+      .navOption {
+        @include alignCenter;
+        @include makeCircle;
+        height: var(--button-width);
+        width: var(--button-width);
+        color: white;
+        background-color: var(--theme-color-6);
+        margin: calc(var(--button-width)/12) calc(var(--button-width) / 6);
+        z-index: 1;
+        transition: all var(--transition-speed);
+        position: relative;
+
+        &::after {
+          @include alignCenter;
+          min-height: var(--button-width);
+          border-top-right-radius: calc(var(--button-width) / 2);
+          border-bottom-right-radius: calc(var(--button-width) / 2);
+          position: absolute;
+          left: 50%;
+          content: attr(data-name);
+          transition: all var(--transition-speed);
+          z-index: -1;
+          opacity: 0;
+          pointer-events: none;
+        }
+
+        &:hover {
+          background-color: var(--theme-color-7);
+
+          &::after {
+            opacity: 1;
+            background-color: var(--theme-color-7);
+            left: 50%;
+            pointer-events: initial;
+            padding: 0 calc(var(--button-width)  / 3 * 2);
+          }
+        }
+      }
+    }
+
+    .bottomLeftSettings {
+      @include alignCenter;
+      margin-top: auto;
+      flex-direction: column;
+      margin-bottom: calc(var(--button-width)  / 3 * 2);
+
+      .userSettings {
+        color: white;
+        width: var(--button-width);
+        height: var(--button-width);
+        position: relative;
+        z-index: 10;
+
+        .userSettingsOptions {
+          opacity: 0;
+          position: absolute;
+          display: flex;
+          flex-direction: column;
+          transition: all 0.2s;
+          left: 0;
+          bottom: 0;
+          pointer-events: none;
+          min-height: var(--button-width);
+          border-radius: calc(var(--button-width) / 2);
+          z-index: -1;
+
+          .userSettingsOption {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: var(--button-width);
+            cursor: pointer;
+            transition: all 0.2s;
+            padding-right: calc(var(--button-width)  / 3 * 2);
+
+            &:first-child {
+              border-top-left-radius: calc(var(--button-width) / 2);
+              border-top-right-radius: calc(var(--button-width) / 2);
+            }
+
+            &:last-child {
+              border-bottom-left-radius: calc(var(--button-width) / 2);
+              border-bottom-right-radius: calc(var(--button-width) / 2);
+            }
+          }
+        }
+
+        .userImage {
+          width: var(--button-width);
+          height: var(--button-width);
+          border-radius: 50%;
+          cursor: pointer;
+          z-index: 0;
+        }
+
+        &:hover {
+          .userSettingsOptions {
+            opacity: 1;
+            background-color: var(--theme-color-7);
+            pointer-events: initial;
+
+            .userSettingsOption {
+              padding-left: calc(calc(var(--button-width) / 3 * 2) + calc(var(--button-width) / 2));
+
+              &:hover {
+                background-color: var(--theme-color-9);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

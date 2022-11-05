@@ -1,0 +1,47 @@
+.loadingWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: black;
+  width: 100%;
+
+  .iconWrapper {
+    position: relative;
+    .iconInside {
+      position: absolute;
+      border-radius: 50%;
+      background: radial-gradient(closest-side, white var(--inner-radius), transparent 0), conic-gradient(#ccc var(--circle-angle), transparent 0);
+      width: 4rem;
+      height: 4rem;
+      animation: rotating infinite 1s linear;
+    }
+
+    .iconInside:nth-child(2) {
+      // animation-delay: 0;
+      --inner-radius: 60%;
+      --circle-angle: 50%;
+      animation-direction: reverse;
+    }
+
+    .iconInside:nth-child(1) {
+      animation-delay: 200ms;
+      // animation-duration: 0.5s;
+      scale: 1.5;
+      --inner-radius: 73.33%;
+      --circle-angle: 30%;
+      // display: none;
+    }
+  }
+
+  
+}
+
+@keyframes rotating {
+  from {
+    rotate: 0deg;
+  }
+  to { 
+    rotate: 360deg;
+  }
+}

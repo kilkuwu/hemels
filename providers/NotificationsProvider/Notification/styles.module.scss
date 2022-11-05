@@ -1,0 +1,70 @@
+.notification {
+  box-shadow: 0 0 10px #ccc;
+  color: white;
+  margin: 0.2rem 0;
+  display: flex;
+  border-radius: 10px;
+  min-height: 4rem;
+  min-width: 16rem;
+  max-width: 30vw;
+  transition: all 0.1s;
+  align-items: center;
+  animation: slideInFromTheRight 0.5s cubic-bezier(1, 0, 0, 1);
+  background-color: var(--notif-bg-color);
+
+  .notificationIcon {
+    font-size: 2rem;
+    line-height: 2rem; // making it circle
+    margin: 0.5rem;
+    padding: 0.2rem;
+    border-radius: 50%;
+    background: radial-gradient(closest-side, var(--notif-bg-color) 50%, transparent 0), conic-gradient(#eee calc(var(--percent-remaining) * 1%), var(--notif-bg-color) 0);
+  }
+
+  .notificationMessage {
+    margin: 0.5rem 0.5rem 0.5rem 0;
+  }
+
+  &:hover {
+    box-shadow: 0 0 10px #000;
+  }
+}
+
+
+.notificationNormal {
+  --notif-bg-color: #5bc0de
+}
+
+.notificationSuccess {
+  --notif-bg-color: #5acf5a;
+}
+
+.notificationFailure {
+  --notif-bg-color: #d1110b;
+}
+
+.notificationWarning {
+  --notif-bg-color: #f0ad4e
+}
+
+.slideOut {
+  animation: slideOut 1s cubic-bezier(0.5, 0, 1, 0) forwards;
+}
+
+@keyframes slideInFromTheRight {
+  from {
+    transform: translateX(120%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOut {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(120%);
+  }
+}

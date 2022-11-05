@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+:root {
+  --theme-color-0: #f6f6fc;
+  --theme-color-1: #e2e2f7;
+  --theme-color-2: #c5c5ee;
+  --theme-color-3: #8cd3ff;
+  --theme-color-4: #a7a7e6;
+  --theme-color-5: #8a8add;
+  --theme-color-6: #5454cd;
+  --theme-color-7: #3b3bc6;
+  --theme-color-8: #3333ae;
+  --theme-color-9: #2b2b95;
+  --theme-color-10: #24247d ;
+}
+
+* {
+  box-sizing: border-box
+}
+
+body {
+  background-color: var(--theme-color-0);
+  color: black;
+  font-family: 'Open Sans', sans-serif
+}
+
+a {
+  text-decoration: none;
+}
+
