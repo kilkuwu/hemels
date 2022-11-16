@@ -22,7 +22,7 @@ export default function Login() {
 
     router.push("/");
     dispatchNotifications(0, "You have already logged in!");
-  }, []);
+  }, [dispatchNotifications, router, user]);
 
   async function validateEmailAndPassword(email: string, password: string) {
     const response = await fetch("/api/auth", {
