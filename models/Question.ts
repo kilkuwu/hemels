@@ -9,35 +9,30 @@ const questionSchema = new Schema({
     type: [String],
     required: true,
   },
-  type: {
-    type: Number,
-    required: true,
-    min: 0,
-  },
   data: {
     type: {},
     required: true,
   },
+  author_id: {
+    type: String,
+    required: true,
+  },
 });
 
-interface QuestionType {
+export interface QuestionType {
   question: string;
   tags: string[];
-  type: number;
-  data: {
-    choice?: {
-      choices: string[];
-      correct: number;
-    };
-    gaps?: {
-      content: string;
-      regex: boolean;
-    }[];
-    pairs?: {
-      first: string;
-      second: string;
-    };
-  };
+  data:
+    | {
+        choices?: string[];
+        correct?: number;
+      }
+    | {
+        content: string;
+        position: number;
+        regex: boolean;
+      }[];
+  author_id: string;
 }
 
 export default (models.Question as Model<QuestionType>) ||

@@ -25,7 +25,18 @@ export default async function handler(
       break;
     case "GET":
       try {
-        const questions = await Question.find({});
+        const { limit, tags } = req.query;
+        console.log(tags);
+
+        const questions = await Question.find(
+          {
+            tags: {
+              $all: tags,
+            },
+          },
+          {},
+          { limit: Number(limit) }
+        );
         res.status(201).json({
           data: questions,
         });

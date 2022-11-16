@@ -2,15 +2,13 @@ import styles from "./styles.module.scss";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
-export default function Add() {
+export default function Practice() {
   const router = useRouter();
-
-  const Links = [];
 
   return (
     <div className={styles.wrapper}>
       <div className={styles.background}>
-        <Link href={"add/multiple_choice"}>
+        <Link href={`${router.asPath}/multiple_choice`}>
           <a className={styles.submenuButton}>Multiple Choice</a>
         </Link>
         <Link href={`${router.asPath}/completion`}>

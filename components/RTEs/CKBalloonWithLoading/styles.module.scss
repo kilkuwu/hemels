@@ -1,6 +1,7 @@
 .editorWrapper {
   position: relative;
-  min-height: calc(var(--line-height) * 1em + 1.8em + 2px);
+  --min-height: calc(var(--line-height) * 1em + 1.8em + 2px);
+  min-height: var(--min-height);
 
   .loading {
     position: absolute;
@@ -11,8 +12,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #fff;
     cursor: default;
+    background-color: var(--theme-color-1);
   }
 
   .fadeOut {
@@ -23,9 +24,9 @@
     from {
       opacity: 1;
     }
+
     to {
       opacity: 0;
     }
   }
 }
-

@@ -11,6 +11,7 @@ import {
 } from "react";
 
 interface UserType {
+  _id: string;
   email: string;
   username: string;
   pictureUrl?: string;
@@ -58,12 +59,11 @@ export default function UserProvider({ children }: PropsWithChildren) {
       }
       const decoded: any = decode(jsonResponse.token);
 
-      return {
-        email: decoded.email,
-        username: decoded.username,
-        pictureUrl: decoded.pictureUrl,
-        permission: decoded.permission,
-      };
+      delete decoded.exp;
+      delete decoded.iat;
+      delete decoded.__v;
+
+      return decoded;
     }
 
     const accessToken = localStorage.getItem("accessToken");
@@ -87,7 +87,7 @@ export default function UserProvider({ children }: PropsWithChildren) {
   if (!fetchUserFinished)
     return (
       <div style={{ height: "100vh" }}>
-        <Loading />
+        <Loading text="Loading user" />
       </div>
     );
 

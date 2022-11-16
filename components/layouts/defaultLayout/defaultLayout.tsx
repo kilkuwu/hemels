@@ -75,8 +75,10 @@ export default function DefaultLayout({ children }) {
                     Logout
                   </div>
                 </div>
-                <img
+                <Image
                   className={styles.userImage}
+                  layout="fill"
+                  priority
                   src={user.pictureUrl || "/default_avatar.png"}
                   alt={"User profile picture"}
                 />

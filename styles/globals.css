@@ -1,17 +1,43 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
 :root {
-  --theme-color-0: #f6f6fc;
-  --theme-color-1: #e2e2f7;
-  --theme-color-2: #c5c5ee;
-  --theme-color-3: #8cd3ff;
-  --theme-color-4: #a7a7e6;
-  --theme-color-5: #8a8add;
-  --theme-color-6: #5454cd;
-  --theme-color-7: #3b3bc6;
-  --theme-color-8: #3333ae;
-  --theme-color-9: #2b2b95;
-  --theme-color-10: #24247d ;
+  --theme-color-0: #fff;
+  --theme-color-1: #f0f0f0;
+  --theme-color-2: #efefef;
+  --theme-color-3: #e0e0e0;
+  --theme-color-4: #dfdfdf;
+  --theme-color-5: #d0d0d0;
+  --theme-color-6: #cfcfcf;
+  --theme-color-7: #c0c0c0;
+  --theme-color-8: #bfbfbf;
+  --theme-color-9: #b0b0b0;
+  --theme-color-10: #afafaf;
+  --theme-color-11: #a0a0a0;
+  --theme-color-12: #9f9f9f;
+  --theme-color-13: #909090;
+  --theme-color-14: #8f8f8f;
+  --theme-color-15: #808080;
+  --theme-red-color-1: #ffcccc;
+  --theme-red-color-2: #ff9999;
+  --theme-red-color-3: #ff6666;
+  --theme-red-color-4: #ff3333;
+  --theme-red-color-5: #ff0000;
+  --theme-red-color-6: #e60000;
+  --theme-red-color-7: #cc0000;
+  --theme-red-color-8: #b30000;
+  --theme-red-color-9: #990000;
+  --theme-red-color-10: #800000;
+  --theme-blue-color-0: #f8f8fd;
+  --theme-blue-color-1: #e7e7f8;
+  --theme-blue-color-2: #d0d0f1;
+  --theme-blue-color-3: #b8b8ea;
+  --theme-blue-color-4: #a0a0e3;
+  --theme-blue-color-5: #8a8add;
+  --theme-blue-color-6: #6d6dd5;
+  --theme-blue-color-7: #5151cd;
+  --theme-blue-color-8: #3838c2;
+  --theme-blue-color-9: #3030a6;
+  --theme-blue-color-10: #28288a;
 }
 
 * {
@@ -19,7 +45,7 @@
 }
 
 body {
-  background-color: var(--theme-color-0);
+  --theme-blue-color: var(--theme-color-0);
   color: black;
   font-family: 'Open Sans', sans-serif
 }
@@ -27,4 +53,3 @@ body {
 a {
   text-decoration: none;
 }
-

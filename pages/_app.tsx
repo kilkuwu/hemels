@@ -4,7 +4,6 @@ import "styles/normalize.css";
 import NotificationsContextProvider from "providers/NotificationsProvider";
 import UserProvider from "providers/UserProvider";
 import Protected from "components/special/protected";
-import { motion, AnimatePresence } from "framer-motion";
 
 function MyApp({ Component, pageProps, router }) {
   const { isProtected, permission, layout, ...props } = pageProps;
@@ -15,7 +14,7 @@ function MyApp({ Component, pageProps, router }) {
     <NotificationsContextProvider>
       <UserProvider>
         <Layout>
-          <div
+          {/* <div
             style={{
               height: "100%",
               width: "100%",
@@ -49,17 +48,17 @@ function MyApp({ Component, pageProps, router }) {
                   top: 0,
                   left: 0,
                 }}
-              >
-                {isProtected ? (
-                  <Protected permission={permission}>
-                    <Component {...props} />
-                  </Protected>
-                ) : (
-                  <Component {...props} />
-                )}
-              </motion.div>
+              > */}
+          {isProtected ? (
+            <Protected permission={permission}>
+              <Component {...props} />
+            </Protected>
+          ) : (
+            <Component {...props} />
+          )}
+          {/* </motion.div>
             </AnimatePresence>
-          </div>
+                </div> */}
         </Layout>
       </UserProvider>
     </NotificationsContextProvider>

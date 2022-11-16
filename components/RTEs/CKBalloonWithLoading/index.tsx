@@ -11,13 +11,7 @@ export default function CKBalloonWithLoading(props: CKPropsWithoutEditor) {
   const loadingRef: MutableRefObject<HTMLDivElement> = useRef();
   return (
     <div className={styles.editorWrapper}>
-      {loaded ? (
-        <></>
-      ) : (
-        <div className={styles.loading} ref={loadingRef}>
-          Loading...
-        </div>
-      )}
+      {loaded ? <></> : <div className={styles.loading} ref={loadingRef} />}
       <CKBalloon
         {...props}
         onReady={(editor) => {

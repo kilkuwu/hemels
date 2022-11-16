@@ -6,24 +6,24 @@ import {
   faPlus,
   faPaperPlane,
 } from "@fortawesome/free-solid-svg-icons";
-import CKBalloonWithLoading from "components/RTEs/CKBalloonWithLoading";
 import { useRouter } from "next/router";
 import { useNotification } from "providers/NotificationsProvider";
+import Loading from "components/special/loading";
+import CKBalloonWithLoading from "components/RTEs/CKBalloonWithLoading";
+import { QuestionType } from "models/Question";
+import { useUser } from "providers/UserProvider";
 
 export default function MultipleChoice() {
   const [choices, setChoices] = useState<
     { content: string; correct: boolean }[]
   >([]);
-  const [question, setQuestion] = useState("");
-  const [note, setNote] = useState("");
-
+  const [isLoading, setIsLoading] = useState(true);
   const router = useRouter();
-
-  const dispatch = useNotification();
+  const [user, _] = useUser();
 
   useEffect(() => {
     if (!router.isReady) return;
-
+    if (!isLoading) return;
     const { type } = router.query;
 
     if (+type == 0) {
@@ -40,7 +40,14 @@ export default function MultipleChoice() {
     } else {
       setChoices(Array(4).fill({ content: "", correct: false }));
     }
-  }, [router.isReady]);
+    setIsLoading(false);
+  }, [router.isReady, isLoading, router.query]);
+
+  const [question, setQuestion] = useState("");
+  const [note, setNote] = useState("");
+  const dispatch = useNotification();
+
+  if (isLoading) return <Loading />;
 
   const handleSubmit = async () => {
     let correct = -1;
@@ -50,20 +57,18 @@ export default function MultipleChoice() {
       if (choices[i].correct) correct = i;
     }
     if (correct === -1) return dispatch(2, "There must be an answer!");
-
+    let finalQuestion: QuestionType = {
+      question: question,
+      tags: ["multiple choice"],
+      data: {
+        choices: choiceContents,
+        correct: correct,
+      },
+      author_id: user._id,
+    };
     const res = await fetch("/api/question", {
       method: "POST",
-      body: JSON.stringify({
-        question: question,
-        tags: [],
-        type: 0,
-        data: {
-          choice: {
-            choices: choiceContents,
-            correct: correct,
-          },
-        },
-      }),
+      body: JSON.stringify(finalQuestion),
     });
 
     console.log(await res.json());

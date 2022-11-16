@@ -24,12 +24,12 @@
 
   .navSection {
     min-height: 100vh;
-    background-color: var(--theme-color-1);
+    background-color: var(--theme-color-2);
     @include alignColumn;
 
     >.routesNav {
       @include alignColumn;
-      margin-top: calc(var(--button-width)  / 3 * 2);
+      margin-top: calc(var(--button-width) / 3 * 2);
 
       .navOption {
         @include alignCenter;
@@ -37,7 +37,7 @@
         height: var(--button-width);
         width: var(--button-width);
         color: white;
-        background-color: var(--theme-color-6);
+        background-color: var(--theme-blue-color-7);
         margin: calc(var(--button-width)/12) calc(var(--button-width) / 6);
         z-index: 1;
         transition: all var(--transition-speed);
@@ -48,6 +48,8 @@
           min-height: var(--button-width);
           border-top-right-radius: calc(var(--button-width) / 2);
           border-bottom-right-radius: calc(var(--button-width) / 2);
+          overflow: hidden;
+          max-width: calc(var(--button-width) / 2);
           position: absolute;
           left: 50%;
           content: attr(data-name);
@@ -58,14 +60,15 @@
         }
 
         &:hover {
-          background-color: var(--theme-color-7);
+          background-color: var(--theme-blue-color-8);
 
           &::after {
+            max-width: unset;
             opacity: 1;
-            background-color: var(--theme-color-7);
+            background-color: var(--theme-blue-color-8);
             left: 50%;
             pointer-events: initial;
-            padding: 0 calc(var(--button-width)  / 3 * 2);
+            padding: 0 calc(var(--button-width) / 3 * 2);
           }
         }
       }
@@ -75,7 +78,7 @@
       @include alignCenter;
       margin-top: auto;
       flex-direction: column;
-      margin-bottom: calc(var(--button-width)  / 3 * 2);
+      margin-bottom: calc(var(--button-width) / 3 * 2);
 
       .userSettings {
         color: white;
@@ -104,7 +107,7 @@
             height: var(--button-width);
             cursor: pointer;
             transition: all 0.2s;
-            padding-right: calc(var(--button-width)  / 3 * 2);
+            padding-right: calc(var(--button-width) / 3 * 2);
 
             &:first-child {
               border-top-left-radius: calc(var(--button-width) / 2);
@@ -129,14 +132,14 @@
         &:hover {
           .userSettingsOptions {
             opacity: 1;
-            background-color: var(--theme-color-7);
+            background-color: var(--theme-blue-color-7);
             pointer-events: initial;
 
             .userSettingsOption {
               padding-left: calc(calc(var(--button-width) / 3 * 2) + calc(var(--button-width) / 2));
 
               &:hover {
-                background-color: var(--theme-color-9);
+                background-color: var(--theme-blue-color-8);
               }
             }
           }

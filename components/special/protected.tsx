@@ -26,7 +26,7 @@ export default function Protected({ children, permission }) {
         );
       }
     }, 1000);
-  }, [router.isReady, user]);
+  }, [user, dispatchNotifications, permission, router]);
 
   let condition = user != null;
   if (condition && permission) {

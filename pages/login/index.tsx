@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useNotification } from "providers/NotificationsProvider";
 import { useUser } from "providers/UserProvider";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./styles.module.scss";
 import { decode, JwtPayload } from "jsonwebtoken";
 
@@ -14,6 +14,15 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const dispatchNotifications = useNotification();
   const router = useRouter();
+
+  useEffect(() => {
+    if (!router.isReady) return;
+
+    if (!user) return;
+
+    router.push("/");
+    dispatchNotifications(0, "You have already logged in!");
+  }, []);
 
   async function validateEmailAndPassword(email: string, password: string) {
     const response = await fetch("/api/auth", {
@@ -33,15 +42,13 @@ export default function Login() {
     localStorage.setItem("accessToken", jsonResponse.token);
 
     function getPayload() {
-      const info = decode(jsonResponse.token, {
-        json: true,
-      });
-      return {
-        email: info.email,
-        username: info.username,
-        pictureUrl: info.pictureUrl,
-        permission: info.permission,
-      };
+      const info: any = decode(jsonResponse.token);
+
+      delete info.exp;
+      delete info.iat;
+      delete info.__v;
+
+      return info;
     }
 
     dispatchUser({

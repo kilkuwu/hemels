@@ -1,0 +1,32 @@
+.wrapper {
+    width: 100%;
+    height: 100%;
+
+    >.background {
+        height: 100%;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 2%;
+
+        .submenuButton {
+            background-color: #00000055;
+            color: white;
+            text-shadow: 2px 2px 50px black;
+            width: 20em;
+            padding: 1em;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 500ms;
+
+            &:hover {
+                background-color: #000000aa;
+                width: 24em;
+            }
+        }
+    }
+}
