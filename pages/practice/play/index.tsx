@@ -8,12 +8,15 @@ export default function Play({ questions }) {
 export const getServerSideProps: GetServerSideProps<{
   query: ParsedUrlQuery;
 }> = async (ctx) => {
+  const req = ctx.req;
+  const referer = req.headers.referer.split("/");
+  const url = `${referer[0]}//${referer[2]}`;
   const { type } = ctx.query;
   let questions = [];
   if (type == "random") {
     const { n, tags } = ctx.query;
     const res = await fetch(
-      "http://localhost:3000/api/question/generate?" +
+      `${url}/api/question/generate?` +
         new URLSearchParams({
           type: type,
           n: String(n),
