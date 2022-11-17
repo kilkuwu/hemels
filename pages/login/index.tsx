@@ -7,6 +7,7 @@ import { useUser } from "providers/UserProvider";
 import { useEffect, useState } from "react";
 import styles from "./styles.module.scss";
 import { decode, JwtPayload } from "jsonwebtoken";
+import Loading from "components/special/loading";
 
 export default function Login() {
   const [user, dispatchUser] = useUser();
@@ -14,6 +15,7 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const dispatchNotifications = useNotification();
   const router = useRouter();
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     if (!router.isReady) return;
@@ -62,38 +64,42 @@ export default function Login() {
   }
 
   return (
-    <div className={styles.loginWrapper}>
-      <form
-        className={styles.loginForm}
-        onSubmit={async (e) => {
-          e.preventDefault();
+    <Loading loading={loading}>
+      <div className={styles.loginWrapper}>
+        <form
+          className={styles.loginForm}
+          onSubmit={(e) => {
+            e.preventDefault();
 
-          validateEmailAndPassword(email, password);
-        }}
-      >
-        <label>Login</label>
-        <input
-          placeholder="Email"
-          type={"email"}
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <input
-          placeholder="Password"
-          type={"password"}
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
+            setLoading(true);
 
-        <button type="submit">
-          <FontAwesomeIcon icon={faSignIn} />
-        </button>
-        <Link href={"/register"}>
-          <a className={styles.registerButton}>
-            Have no account? Register one!
-          </a>
-        </Link>
-      </form>
-    </div>
+            validateEmailAndPassword(email, password);
+          }}
+        >
+          <label>Login</label>
+          <input
+            placeholder="Email"
+            type={"email"}
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <input
+            placeholder="Password"
+            type={"password"}
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+
+          <button type="submit">
+            <FontAwesomeIcon icon={faSignIn} />
+          </button>
+          <Link href={"/register"}>
+            <a className={styles.registerButton}>
+              Have no account? Register one!
+            </a>
+          </Link>
+        </form>
+      </div>
+    </Loading>
   );
 }

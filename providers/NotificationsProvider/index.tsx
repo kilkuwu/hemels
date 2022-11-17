@@ -10,9 +10,10 @@ import styles from "./styles.module.scss";
  * 1: SUCCESS
  * 2: FAILURE
  * 3: WARNING
+ * 4: LOADING
  * ```
  */
-type NotificationTypeType = 0 | 1 | 2 | 3;
+type NotificationTypeType = 0 | 1 | 2 | 3 | 4;
 
 export interface NotificationType {
   /** Can be generated using uuid/v4 */
@@ -84,6 +85,7 @@ export const useNotification = () => {
    * 1: SUCCESS
    * 2: FAILURE
    * 3: WARNING
+   * 4: LOADING
    * ```
    */
   const sendNotification = (type: NotificationTypeType, message: string) => {

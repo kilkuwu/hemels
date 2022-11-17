@@ -4,6 +4,7 @@ import {
   faInfoCircle,
   faExclamationCircle,
   faCircleCheck,
+  faGear,
 } from "@fortawesome/free-solid-svg-icons";
 import styles from "./styles.module.scss";
 import { CSSProperties, Dispatch, useEffect, useRef, useState } from "react";
@@ -14,6 +15,7 @@ const notificationStyle = [
   styles.notificationSuccess,
   styles.notificationFailure,
   styles.notificationWarning,
+  styles.notificationLoading,
 ];
 
 const notificationIcon = [
@@ -21,6 +23,7 @@ const notificationIcon = [
   faCircleCheck,
   faTimesCircle,
   faExclamationCircle,
+  faGear,
 ];
 
 type NotificationComponentProps = {

@@ -1,47 +1,63 @@
-.loadingWrapper {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
+.wrapper {
   height: 100%;
   width: 100%;
+  position: relative;
 
-  .iconWrapper {
-    position: relative;
-    width: 8rem;
-    height: 8rem;
+  .loadingWrapper {
+    background-color: var(--theme-color-0);
+    position: absolute;
+    top: 0;
+    left: 0;
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    animation: fadeIn 0.25s;
 
-    .iconInside {
-      position: absolute;
-      border-radius: 50%;
-      background: radial-gradient(closest-side,
-          var(--theme-color-0) var(--inner-radius),
-          transparent 0),
-        conic-gradient(var(--theme-color-5) var(--circle-angle), transparent 0);
-      width: 4rem;
-      height: 4rem;
-      animation: rotating infinite 1s linear;
+    .iconWrapper {
+      position: relative;
+      width: 8rem;
+      height: 8rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .iconInside {
+        position: absolute;
+        border-radius: 50%;
+        background: radial-gradient(closest-side,
+            var(--theme-color-0) var(--inner-radius),
+            transparent 0),
+          conic-gradient(var(--theme-color-5) var(--circle-angle), transparent 0);
+        width: 4rem;
+        height: 4rem;
+        animation: rotating infinite 1s linear;
+      }
+
+      .iconInside:nth-child(2) {
+        --inner-radius: 60%;
+        --circle-angle: 50%;
+        animation-direction: reverse;
+      }
+
+      .iconInside:nth-child(1) {
+        animation-delay: 200ms;
+        scale: 1.5;
+        --inner-radius: 73.33%;
+        --circle-angle: 30%;
+      }
     }
 
-    .iconInside:nth-child(2) {
-      --inner-radius: 60%;
-      --circle-angle: 50%;
-      animation-direction: reverse;
-    }
-
-    .iconInside:nth-child(1) {
-      animation-delay: 200ms;
-      scale: 1.5;
-      --inner-radius: 73.33%;
-      --circle-angle: 30%;
+    .loadingText {
+      animation: leftToRight 2s infinite cubic-bezier(0.75, 0, 0.75, 1);
     }
   }
 
-  .loadingText {
-    animation: leftToRight 2s infinite cubic-bezier(0.75, 0, 0.75, 1);
+  .mainContent {
+    height: 100%;
+    width: 100%;
   }
 }
 
@@ -77,5 +93,15 @@
 
   to {
     rotate: 360deg;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
   }
 }

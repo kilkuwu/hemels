@@ -1,5 +1,6 @@
 import { faSignIn } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Loading from "components/special/loading";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useNotification } from "providers/NotificationsProvider";
@@ -13,6 +14,7 @@ export default function Login() {
   const [pictureUrl, setPictureUrl] = useState("");
   const dispatchNotifications = useNotification();
   const router = useRouter();
+  const [loading, setLoading] = useState(false);
 
   async function register(data: {
     email: string;
@@ -51,52 +53,59 @@ export default function Login() {
   }
 
   return (
-    <div className={styles.loginWrapper}>
-      <form
-        className={styles.loginForm}
-        onSubmit={async (e) => {
-          e.preventDefault();
+    <Loading loading={loading}>
+      <div className={styles.loginWrapper}>
+        <form
+          className={styles.loginForm}
+          onSubmit={async (e) => {
+            e.preventDefault();
 
-          register({
-            email,
-            username,
-            password,
-            pictureUrl,
-          });
-        }}
-      >
-        <label>Register</label>
-        <input
-          placeholder="Email"
-          type={"email"}
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <input
-          placeholder="Username"
-          type={"text"}
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-        />
-        <input
-          placeholder="Password"
-          type={"password"}
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <input
-          placeholder="Profile picture URL"
-          type={"text"}
-          value={pictureUrl}
-          onChange={(e) => setPictureUrl(e.target.value)}
-        />
-        <button type="submit">
-          <FontAwesomeIcon icon={faSignIn} />
-        </button>
-        <Link href={"/login"}>
-          <a className={styles.registerButton}>Have an account? Login!</a>
-        </Link>
-      </form>
-    </div>
+            setLoading(true);
+
+            register({
+              email,
+              username,
+              password,
+              pictureUrl,
+            });
+
+            setLoading(false);
+          }}
+        >
+          <label>Register</label>
+          <input
+            placeholder="Email"
+            type={"email"}
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <input
+            placeholder="Username"
+            type={"text"}
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
+          <input
+            placeholder="Password"
+            type={"password"}
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <input
+            placeholder="Profile picture URL"
+            type={"text"}
+            value={pictureUrl}
+            onChange={(e) => setPictureUrl(e.target.value)}
+          />
+          <button type="submit">
+            <FontAwesomeIcon icon={faSignIn} />
+          </button>
+          <Link href={"/login"}>
+            <a className={styles.registerButton}>Have an account? Login!</a>
+          </Link>
+        </form>
+      </div>
+
+    </Loading>
   );
 }
