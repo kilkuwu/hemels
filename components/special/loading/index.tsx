@@ -8,7 +8,7 @@ export default function Loading({
 }: {
   text?: string;
   loading?: boolean;
-  children: ReactNode;
+  children?: ReactNode;
 }) {
   if (!loading) return <>{children}</>;
 
