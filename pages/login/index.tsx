@@ -26,7 +26,7 @@ export default function Login() {
 
     if (!loading)
       dispatchNotifications(0, "You have already logged in!");
-  }, [dispatchNotifications, router, user]);
+  }, [dispatchNotifications, router, user, loading]);
 
   async function validateEmailAndPassword(email: string, password: string) {
     const response = await fetch("/api/auth", {

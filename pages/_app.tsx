@@ -4,61 +4,40 @@ import "styles/normalize.css";
 import NotificationsContextProvider from "providers/NotificationsProvider";
 import UserProvider from "providers/UserProvider";
 import Protected from "components/special/protected";
+import { useEffect, useState } from "react";
+import Loading from "components/special/loading";
 
 function MyApp({ Component, pageProps, router }) {
   const { isProtected, permission, layout, ...props } = pageProps;
 
   const Layout = layout || DefaultLayout;
 
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    router.events.on('routeChangeStart', (url) => {
+      setLoading(true);
+    });
+
+    router.events.on('routeChangeComplete', (url) => {
+      setLoading(false);
+    });;
+  }, [router.events]);
+
+
   return (
     <NotificationsContextProvider>
       <UserProvider>
         <Layout>
-          {/* <div
-            style={{
-              height: "100%",
-              width: "100%",
-              position: "relative",
-            }}
-          >
-            <AnimatePresence>
-              <motion.div
-                key={router.route}
-                initial="pageInitial"
-                animate="pageAnimate"
-                exit="pageExit"
-                variants={{
-                  pageInitial: {
-                    opacity: 0,
-                  },
-                  pageAnimate: {
-                    opacity: 1,
-                  },
-                  pageExit: {
-                    opacity: 0,
-                  },
-                }}
-                transition={{
-                  type: "just",
-                }}
-                style={{
-                  height: "100%",
-                  width: "100%",
-                  position: "absolute",
-                  top: 0,
-                  left: 0,
-                }}
-              > */}
-          {isProtected ? (
-            <Protected permission={permission}>
+          {
+            loading ? <Loading /> : (isProtected ? (
+              <Protected permission={permission}>
+                <Component {...props} />
+              </Protected>
+            ) : (
               <Component {...props} />
-            </Protected>
-          ) : (
-            <Component {...props} />
-          )}
-          {/* </motion.div>
-            </AnimatePresence>
-                </div> */}
+            ))
+          }
         </Layout>
       </UserProvider>
     </NotificationsContextProvider>
