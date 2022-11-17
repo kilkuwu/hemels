@@ -65,6 +65,7 @@ export default function MultipleChoice() {
         correct: correct,
       },
       author_id: user._id,
+      note: note
     };
     const res = await fetch("/api/question", {
       method: "POST",

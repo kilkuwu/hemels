@@ -17,6 +17,10 @@ const questionSchema = new Schema({
     type: String,
     required: true,
   },
+  note: {
+    type: String,
+    required: true,
+  },
 });
 
 export interface QuestionType {
@@ -33,6 +37,7 @@ export interface QuestionType {
         regex: boolean;
       }[];
   author_id: string;
+  note: string;
 }
 
 export default (models.Question as Model<QuestionType>) ||

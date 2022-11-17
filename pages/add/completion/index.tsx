@@ -101,6 +101,7 @@ export default function Completion() {
         };
       }),
       author_id: user._id,
+      note: note
     };
 
     const res = await fetch("/api/question", {
