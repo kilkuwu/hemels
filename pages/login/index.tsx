@@ -23,7 +23,9 @@ export default function Login() {
     if (!user) return;
 
     router.push("/");
-    dispatchNotifications(0, "You have already logged in!");
+
+    if (!loading)
+      dispatchNotifications(0, "You have already logged in!");
   }, [dispatchNotifications, router, user]);
 
   async function validateEmailAndPassword(email: string, password: string) {
@@ -59,6 +61,7 @@ export default function Login() {
     });
 
     dispatchNotifications(1, "Successfully logged in!");
+
 
     router.push("/");
   }
